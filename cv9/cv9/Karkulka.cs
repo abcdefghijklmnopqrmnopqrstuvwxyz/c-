@@ -6,42 +6,79 @@ using System.Threading.Tasks;
 
 namespace cv9
 {
-    internal class Karkulka
+    internal class Karkulka : Udalost
     {
-        private int _PocetDarku;
-        private int _Pozice;
+        private int _pocetDarku;
+        private int _pozice;
+        private int _cil;
 
-        public int PocetDarku
+        public int pocetDarku
         {
             get
             {
-                return _PocetDarku;
+                return _pocetDarku;
             }
 
             set
             {
-                _PocetDarku = value;
+                _pocetDarku = value;
             }
         }
 
-        public int Pozice
+        public int pozice
         {
             get
             {
-                return _Pozice;
+                return _pozice;
             }
 
             set
             {
-                _Pozice = value;
+                _pozice = value;
+            }
+        }
+
+        public int cil
+        {
+            get
+            {
+                return _cil;
+            }
+
+            set
+            {
+                _cil = value;
             }
         }
 
         public Karkulka()
         {
-            Random random = new Random();
-            PocetDarku = 2;
-            Pozice = random.Next(16);
+            this.pocetDarku = 2;
+        }
+
+        public void pohyb()
+        {
+            Console.Write("\nNahoru\nDolu\nPravo\nLevo\n\nPohyb: ");
+            string input = Console.ReadLine();
+
+            switch (input)
+            {
+                case "Nahoru":
+                    
+                    break;
+
+                case "Dolu":
+
+                    break;
+
+                case "Pravo":
+
+                    break;
+
+                case "Levo":
+
+                    break;
+            }
         }
 
     }

@@ -6,8 +6,15 @@
         {
             Mapa map = new Mapa();
             Karkulka karkulka = new Karkulka();
+            map.generacemapy(karkulka);
 
-            map.generacemapy();
+            while(karkulka.pocetDarku > 0)
+            {
+                Console.WriteLine(map.vypis(karkulka));
+                karkulka.pohyb();
+            }
+            
+
         }
     }
 }
