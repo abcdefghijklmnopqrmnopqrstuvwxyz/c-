@@ -8,32 +8,53 @@ namespace cv9
 {
     internal class Mapa
     {
-        private int[,] map;
-        private const int velikostMapy = 4;
+        private int[,] _mapa;
+        private const int _velikostMapy = 4;
+
+        public int velikostMapy
+        {
+            get
+            {
+                return _velikostMapy;
+            }
+        }
+
+        public int[,] mapa
+        {
+            get
+            {
+                return _mapa;
+            }
+
+            set
+            { 
+                _mapa = value;
+            }
+        }
 
         public Mapa()
         {
-            this.map = new int[velikostMapy, velikostMapy];
+            this.mapa = new int[velikostMapy, velikostMapy];
         }
 
         public void generacemapy(Karkulka k)
         { 
-            Random random = new Random();
-            for (int i = 0; i < map.Length / velikostMapy; i++)
+            Random random = new();
+            for (int i = 0; i < mapa.Length / velikostMapy; i++)
             {
-                for (int j = 0; j < map.Length / velikostMapy; j++)
+                for (int j = 0; j < mapa.Length / velikostMapy; j++)
                 { 
                     int x = random.Next(5);
-                    map[i, j] = x;
+                    mapa[i, j] = x;
                 }
             }
             for (int i = 0; i < 2; i++)
             {
                 int x = random.Next(0) + i * 3;
-                int y = random.Next(map.Length / velikostMapy);
-                if (map[x, y] != 10 && map[x, y] != 20)
+                int y = random.Next(mapa.Length / velikostMapy);
+                if (mapa[x, y] != 10 && mapa[x, y] != 20)
                 {
-                    map[x, y] = (i + 1) * 10;
+                    mapa[x, y] = (i + 1) * 10;
                     if (i == 0)
                     {
                         k.pozice = y;
@@ -49,17 +70,17 @@ namespace cv9
 
         public string vypis(Karkulka k)
         {
-            string r = "\n";
-            for (int i = 0; i < map.Length / velikostMapy; i++)
+            string r = "\n\n\n\n\n";
+            for (int i = 0; i < mapa.Length / velikostMapy; i++)
             {
-                for (int j = 0; j < map.Length / velikostMapy; j++)
+                for (int j = 0; j < mapa.Length / velikostMapy; j++)
                 {
                     if (k.pozice.Equals(i * velikostMapy + j))
                     {
                         r += "[Karkulka]        ";
                         continue;
                     }
-                    switch (map[i, j])
+                    switch (mapa[i, j])
                     { 
                         case 0:
                             r += "Překážka          ";
@@ -84,7 +105,7 @@ namespace cv9
                             break;
                     }
                 }
-                r += "\n\n\n";
+                r += "\n\n";
             }
             return r;
         }

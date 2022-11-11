@@ -6,8 +6,12 @@ using System.Threading.Tasks;
 
 namespace cv9
 {
-    internal class Udalost
+    internal abstract class Udalost : Mapa
     {
-        
+        public bool prekazka()
+        {
+
+            return true;
+        }
     }
 }
