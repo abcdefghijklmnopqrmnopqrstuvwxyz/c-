@@ -54,7 +54,7 @@ namespace cv9
             this.pocetDarku = 2;
         }
 
-        public void pohyb(string input, int[,] mapa)
+        public void pohyb(int input, int[,] mapa)
         {
             Exception ex = new Exception("Vybraný tah vede mimo mapu, pohyb nebyl proveden!");
             int x = 0;
@@ -69,7 +69,7 @@ namespace cv9
 
             switch (input)
             {
-                case "Nahoru":
+                case 8:
                     if (pozice - 4 >= 0)
                     {
                         pozice -= 4;
@@ -80,7 +80,7 @@ namespace cv9
                     }
                     break;
 
-                case "Dolu":
+                case 5:
                     if (pozice + 4 < velikostMapy * velikostMapy)
                     {
                         pozice += 4;
@@ -91,7 +91,7 @@ namespace cv9
                     }
                     break;
 
-                case "Doprava":
+                case 6:
                     if (pozice + 1 < x * velikostMapy)
                     {
                         pozice += 1;
@@ -102,7 +102,7 @@ namespace cv9
                     }
                     break;
 
-                case "Doleva":
+                case 4:
                     if (pozice - 1 >= x * velikostMapy - velikostMapy)
                     {
                         pozice -= 1;
@@ -111,6 +111,34 @@ namespace cv9
                     {
                         throw ex;
                     }
+                    break;
+                default:
+                    throw ex;
+            }
+
+            switch (mapa[(int)pozice / velikostMapy, (int)pozice % velikostMapy]) 
+            {
+                case 0:
+                    if (!prekazka())
+                        pocetDarku--;
+                    break;
+                case 1:
+                    Console.WriteLine(vyhlidka());
+                    break;
+                case 2:
+                    pozice = bludnyKoren(mapa);
+                    break;
+                case 3:
+                    pocetDarku += kvetinovaLouka(pocetDarku);
+                    break;
+                case 4:
+                    vlk();
+                    break;
+                case 20:
+                    babicka(pocetDarku);
+                    break;
+                default:
+                    Console.WriteLine("Nyní jsi u sebe, dones dárečky do babiččina domečku.");
                     break;
             }
         }
